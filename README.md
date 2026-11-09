@@ -17,7 +17,7 @@ A small Windows app for Minecraft screensharers. It downloads the forensic tools
 | Preset | Tools |
 | --- | --- |
 | Short | Ocean, Echo, System Informer, WinPrefetchView, PathsParser, BAM Parser, Everything |
-| Medium | Short + Registry Explorer, bstrings, JournalTrace, Prefetch Parser, USBDeview, Vigils Task Parser, Vigil Registry Scanner, FTK Imager |
+| Medium | Short + Registry Explorer, bstrings, JournalTrace, Prefetch Parser, USBDeview, Vigils Task Parser, [Combined Task Parser](https://github.com/aaa1243/task-parser), Vigil Registry Scanner, FTK Imager |
 | Long | Medium + Timeline Explorer, WxTCmd, AmcacheParser, MFTECmd, PECmd, Hayabusa, AlternateStreamView, LastActivityView, Process Parser, PcaSvc Executed, WinPmem, RAMPSParser, RAMDumpExplorer, PowerShell-Hunter, Detect It Easy, Recuva, Stream Detector, detect.ac tools |
 
 All tools belong to their original authors. This app only downloads them from their official sources.

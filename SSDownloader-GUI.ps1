@@ -42,6 +42,7 @@ $Tools = @(
     @{ Name = 'Prefetch Parser';        Tier = 'M'; Kind = 'github'; Repo = 'spokwn/prefetch-parser';  Pattern = '\.(exe|zip)$' }
     @{ Name = 'USBDeview';              Tier = 'M'; Kind = 'url';    Urls = @('https://www.nirsoft.net/utils/usbdeview-x64.zip', 'https://www.nirsoft.net/utils/usbdeview.zip') }
     @{ Name = 'Vigils Task Parser';     Tier = 'M'; Kind = 'github'; Repo = 'Inkenal/TaskParser';      Pattern = '\.(exe|zip)$' }
+    @{ Name = 'Combined Task Parser';   Tier = 'M'; Kind = 'github'; Repo = 'aaa1243/task-parser';     Pattern = 'CombinedTaskParser\.exe$' }
     @{ Name = 'Vigil Registry Scanner'; Tier = 'M'; Kind = 'github'; Repo = 'Inkenal/RegistryScanner'; Pattern = '\.(exe|zip)$' }
     @{ Name = 'FTK Imager';             Tier = 'M'; Kind = 'page';   Url  = 'https://www.exterro.com/digital-forensics-software/ftk-imager' }
 
