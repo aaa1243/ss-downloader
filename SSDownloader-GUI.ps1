@@ -553,9 +553,9 @@ function Show-CleanupConfirm {
     $del = New-FlatButton 'Delete everything' 296 14 126 34 $ColDangerBtn ([System.Drawing.Color]::White) $ColDangerBtn
     $del.Font = $FontBold
     $del.DialogResult = [System.Windows.Forms.DialogResult]::Yes
-    $bar.Controls.AddRange(@($cancel, $del))
+    foreach ($ctl in @($cancel, $del)) { $bar.Controls.Add([System.Windows.Forms.Control]$ctl) }
 
-    $d.Controls.AddRange(@($icon, $title, $body, $bar))
+    foreach ($ctl in @($icon, $title, $body, $bar)) { $d.Controls.Add([System.Windows.Forms.Control]$ctl) }
     $d.CancelButton = $cancel
     $result = $d.ShowDialog($Form)
     $d.Dispose()
@@ -725,14 +725,14 @@ $colStatus.HeaderText = 'STATUS'
 $colStatus.Width      = 92
 $colStatus.ReadOnly   = $true
 $colStatus.DefaultCellStyle.Font = $FontSmall
-[void]$Grid.Columns.AddRange(@($colChk, $colTool, $colTier, $colType, $colStatus))
+foreach ($col in @($colChk, $colTool, $colTier, $colType, $colStatus)) { [void]$Grid.Columns.Add([System.Windows.Forms.DataGridViewColumn]$col) }
 foreach ($c in $Grid.Columns) { $c.SortMode = [System.Windows.Forms.DataGridViewColumnSortMode]::NotSortable }
 
 # Fill: a group header row per tier, then its tools
 foreach ($tier in @('S', 'M', 'L')) {
     $tierTools = @($Tools | Where-Object { ([string]$_.Tier).ToUpper() -eq $tier })
     if ($tierTools.Count -eq 0) { continue }
-    $i = $Grid.Rows.Add($false, ('{0} SS     {1} tools' -f $TierName[$tier].ToUpper(), $tierTools.Count), '', '', '')
+    $i = $Grid.Rows.Add([object[]]@($false, [string]('{0} SS     {1} tools' -f $TierName[$tier].ToUpper(), $tierTools.Count), '', '', ''))
     $gr = $Grid.Rows[$i]
     $gr.Tag = 'group'
     $gr.ReadOnly = $true
@@ -747,7 +747,7 @@ foreach ($tier in @('S', 'M', 'L')) {
             'page'   { $typeText = 'Opens website ' + [char]0x2197 }
             default  { $typeText = 'Direct' }
         }
-        $i = $Grid.Rows.Add($false, $t.Name, $TierName[$tier], $typeText, '')
+        $i = $Grid.Rows.Add([object[]]@($false, [string]$t.Name, [string]$TierName[$tier], [string]$typeText, ''))
         $Grid.Rows[$i].Tag = $t
     }
 }
@@ -778,7 +778,7 @@ $CopyLog  = New-LinkButton 'Copy' 280 5
 $CopyLog.LinkBehavior = [System.Windows.Forms.LinkBehavior]::HoverUnderline
 $CopyLog.LinkColor    = (C '#B4B8BF')
 $CopyLog.Font         = $FontSmall
-$LogHead.Controls.AddRange(@($LogTitle, $CopyLog))
+foreach ($ctl in @($LogTitle, $CopyLog)) { $LogHead.Controls.Add([System.Windows.Forms.Control]$ctl) }
 
 $LogPad = New-Object System.Windows.Forms.Panel
 $LogPad.Dock      = [System.Windows.Forms.DockStyle]::Fill
@@ -820,12 +820,12 @@ $FinDone     = New-Label '' 90 9 $FontBold $ColOK
 $FinFailed   = New-Label '' 180 9 $FontBold $ColErr
 $FinReason   = New-Label '' 270 10 $FontUI $ColDim
 $RetryLink   = New-LinkButton 'Retry failed' 780 9
-$FinBanner.Controls.AddRange(@($FinTitle, $FinDone, $FinFailed, $FinReason, $RetryLink))
+foreach ($ctl in @($FinTitle, $FinDone, $FinFailed, $FinReason, $RetryLink)) { $FinBanner.Controls.Add([System.Windows.Forms.Control]$ctl) }
 
 $CleanBanner = New-Banner
 $CleanTitle  = New-Label ([string][char]0x2713 + ' Cleanup complete') 14 9 $FontBold $ColOK
 $CleanText   = New-Label "$InstallDir and everything in it was deleted." 170 10 $FontUI $ColSub
-$CleanBanner.Controls.AddRange(@($CleanTitle, $CleanText))
+foreach ($ctl in @($CleanTitle, $CleanText)) { $CleanBanner.Controls.Add([System.Windows.Forms.Control]$ctl) }
 
 # --- Bottom bar: download, progress, cleanup ---------------------------------
 $DownloadButton = New-FlatButton 'Download selected (0)' 16 530 290 44 $ColAccent ([System.Drawing.Color]::White) $ColAccent
@@ -853,12 +853,7 @@ $CleanupButton = New-FlatButton 'Cleanup' 764 530 120 44 $ColWindow $ColErr $Col
 $CleanupButton.Font = $FontBold
 $CleanupButton.FlatAppearance.BorderSize = 2
 
-$Form.Controls.AddRange(@(
-        $TitleLabel, $FolderLabel, $ScannerBox, $PinBox, $OpenScanButton, $OpenFolderButton,
-        $PresetFrame, $SelectedLabel, $SelectAll, $SelectNone,
-        $GridFrame, $LogFrame, $FinBanner, $CleanBanner,
-        $DownloadButton, $ProgLabel, $ProgCount, $ProgTrack, $CleanupButton
-    ))
+foreach ($ctl in @($TitleLabel, $FolderLabel, $ScannerBox, $PinBox, $OpenScanButton, $OpenFolderButton, $PresetFrame, $SelectedLabel, $SelectAll, $SelectNone, $GridFrame, $LogFrame, $FinBanner, $CleanBanner, $DownloadButton, $ProgLabel, $ProgCount, $ProgTrack, $CleanupButton)) { $Form.Controls.Add([System.Windows.Forms.Control]$ctl) }
 
 $PollTimer = New-Object System.Windows.Forms.Timer
 $PollTimer.Interval = 150
