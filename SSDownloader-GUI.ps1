@@ -29,6 +29,7 @@ $Tools = @(
     # ---- Tier S (Short SS) ----
     @{ Name = 'Echo (scanner)';         Tier = 'S'; Kind = 'page';   Url  = 'https://echo.ac' }
     @{ Name = 'Ocean (scanner)';        Tier = 'S'; Kind = 'page';   Url  = 'https://anticheat.ac' }
+    @{ Name = 'Vestige (scanner)';      Tier = 'S'; Kind = 'github'; Repo = 'aaa1243/vestige';         Pattern = 'Vestige\.exe$' }
     @{ Name = 'System Informer';        Tier = 'S'; Kind = 'github'; Repo = 'winsiderss/si-builds';    Pattern = 'bin\.zip$' }
     @{ Name = 'WinPrefetchView';        Tier = 'S'; Kind = 'url';    Urls = @('https://www.nirsoft.net/utils/winprefetchview-x64.zip', 'https://www.nirsoft.net/utils/winprefetchview.zip') }
     @{ Name = 'PathsParser';            Tier = 'S'; Kind = 'github'; Repo = 'spokwn/PathsParser';      Pattern = '\.(exe|zip)$' }
